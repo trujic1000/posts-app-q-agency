@@ -2,9 +2,14 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
+import { useApi } from '@hooks/useApi';
 
 function App() {
   const [count, setCount] = useState(0);
+  const { data, isLoading, error } = useApi('/posts');
+  console.log('data', data);
+  console.log('isLoading', isLoading);
+  console.log('error', error);
 
   return (
     <>
