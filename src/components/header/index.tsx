@@ -5,7 +5,7 @@ import styles from './header.module.css';
 
 function Header() {
   const [isNavOpen, setNavOpen] = React.useState(false);
-  const toggleNav = () => setNavOpen((navOpen) => !navOpen);
+  const toggleNav = () => setNavOpen((isNavOpen) => !isNavOpen);
 
   return (
     <header className={styles.primaryHeader}>
