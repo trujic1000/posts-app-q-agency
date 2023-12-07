@@ -1,68 +1,120 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Colors */
+  --clr-primary: hsl(192 49% 44%);
+  --clr-accent: hsl(48 81% 55%);
+  --clr-white: hsl(0 0% 100%);
+  --clr-black: hsl(0 0% 15%);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Font sizes */
+  --fs-300: clamp(0.83rem, calc(0.8rem + 0.14vw), 0.94rem);
+  --fs-400: clamp(1rem, calc(0.93rem + 0.34vw), 1.25rem);
+  --fs-500: clamp(1.2rem, calc(1.07rem + 0.63vw), 1.67rem);
+  --fs-600: clamp(1.73rem, calc(1.39rem + 1.67vw), 2.96rem);
+  --fs-700: clamp(2.07rem, calc(1.57rem + 2.54vw), 3.95rem);
+  --fs-800: clamp(2.49rem, calc(1.74rem + 3.76vw), 5.26rem);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --fs-primary-heading: var(--fs-700);
+  --fs-secondary-heading: var(--fs-600);
+  --fs-small: var(--fs-300);
+
+  /* Font weights */
+  --fw-normal: 400;
+  --fw-bold: 700;
+
+  /* Font families */
+  --ff-inter: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --ff-body: var(--ff-inter);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* RESET START */
+/* box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-body {
+/* reset margins and paddings */
+* {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  font: inherit;
+}
+
+/* reset list styles on ul and ol elements */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+
+  overflow-x: hidden;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* make images easier to work with */
+img,
+picutre,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* RESET END */
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-400);
+  color: var(--clr-black);
+}
+
+h1,
+h2 {
+  font-weight: var(--fw-bold);
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+h1 {
+  font-size: var(--fs-primary-heading);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+h2 {
+  font-size: var(--fs-secondary-heading);
+}
+
+a {
+  color: var(--clr-white);
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+p:not([class]) {
+  max-width: 60ch;
+}
+
+.container {
+  --container-width: 71.25rem;
+  width: min(90%, var(--container-width));
+  margin-inline: auto;
 }

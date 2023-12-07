@@ -1,6 +1,5 @@
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 
-import './App.css';
 import { Layout } from '@components/Layout';
 import { Posts } from '@pages/Posts';
 import { Post } from '@pages/Post';
