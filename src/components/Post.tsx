@@ -1,5 +1,10 @@
 import React from 'react';
+import { logMessage } from './logMessage';
 
-export const Post = () => {
+function PostItem() {
   return <div>Post</div>;
-};
+}
+
+const PostItemWithLog = logMessage(PostItem);
+
+export { PostItemWithLog as PostItem };
