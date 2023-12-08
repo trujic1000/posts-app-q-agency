@@ -49,7 +49,7 @@ function PostsList() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           {allPosts.map((post) => (
-            <PostItem key={post.id} post={post} />
+            <PostItem key={post.id} post={post} message='Hola de' />
           ))}
         </>
       )}

@@ -7,6 +7,7 @@ import styles from './style.module.css';
 
 type Props = {
   post: Post;
+  message?: string;
 };
 
 function PostItem({ post }: Props) {
@@ -17,11 +18,11 @@ function PostItem({ post }: Props) {
         {post.title}
       </Link>
       <div className={styles.postBody}>{post.body}</div>
-      <CommentsList comments={post.comments} />
+      <CommentsList comments={post.comments} message='Hallo von' />
     </div>
   );
 }
 
-const PostItemWithLog = logMessage(PostItem);
+const PostItemWithLog = logMessage<Props>(PostItem);
 
 export { PostItemWithLog as PostItem };

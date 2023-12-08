@@ -5,6 +5,7 @@ import styles from './style.module.css';
 
 type Props = {
   comments: CommentType[];
+  message?: string;
 };
 
 function CommentsList({ comments }: Props) {
@@ -14,7 +15,7 @@ function CommentsList({ comments }: Props) {
         <h3 className={styles.commentsTitle}>Comments</h3>
         <div className={styles.commentsWrapper}>
           {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
+            <Comment key={comment.id} comment={comment} message='Bonjour de' />
           ))}
         </div>
       </div>

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
 import { logMessage } from '@components/logMessage';
-import styles from './header.module.css';
+import styles from './style.module.css';
 
 function Header() {
   const [isNavOpen, setNavOpen] = React.useState(false);
@@ -11,7 +12,7 @@ function Header() {
     <header className={styles.primaryHeader}>
       <div className='container'>
         <div className={styles.primaryHeaderInner}>
-          <Link to='/'>Q Agency</Link>
+          <NavLink to='/'>Q Agency</NavLink>
           <button
             className={styles.mobileNavToggle}
             aria-expanded={isNavOpen}
@@ -29,14 +30,24 @@ function Header() {
           >
             <ul role='list' className={styles.primaryNavigationList}>
               <li>
-                <Link to='/' className={styles.primaryNavigationLink}>
+                <NavLink
+                  to='/'
+                  className={({ isActive }) =>
+                    [styles.primaryNavigationLink, isActive ? styles.active : ''].join(' ')
+                  }
+                >
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to='/posts' className={styles.primaryNavigationLink}>
+                <NavLink
+                  to='/posts'
+                  className={({ isActive }) =>
+                    [styles.primaryNavigationLink, isActive ? styles.active : ''].join(' ')
+                  }
+                >
                   Posts
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>

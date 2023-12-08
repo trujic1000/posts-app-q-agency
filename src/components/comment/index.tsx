@@ -4,6 +4,7 @@ import styles from './style.module.css';
 
 type Props = {
   comment: CommentType;
+  message?: string;
 };
 
 function Comment({ comment }: Props) {
