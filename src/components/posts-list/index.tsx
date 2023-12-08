@@ -2,12 +2,17 @@ import React from 'react';
 
 import { logMessage } from '@components/logMessage';
 import { PostItem } from '@components/post-item';
-import { useApi, useInfiniteScroll } from 'hooks';
+import { useApi, useInfiniteScroll, useDebounce } from 'hooks';
 import { Post } from 'types';
 import styles from './style.module.css';
 
 function PostsList() {
   const [page, setPage] = React.useState(1);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const userName = useDebounce(searchQuery);
+  // Seems like deep filtering is not working (https://github.com/typicode/json-server/issues/584)
+  // If it was working, I would append this to the end of the url &user.name_like=${userName}
+  // Workaround would be to disable pagination and filter on the FE, but it's not optimal
   const { data, isLoading, error } = useApi<Post[]>(
     `/posts?_expand=user&_embed=comments&_page=${page}`
   );
@@ -19,22 +24,47 @@ function PostsList() {
     }
   });
 
+  // Reset page when userName changes
+  // React.useEffect(() => {
+  //   setPage(1);
+  // }, [userName]);
+
   React.useEffect(() => {
     if (data && !isLoading) {
       setAllPosts((prevPosts) => [...prevPosts, ...data]);
     }
   }, [data, isLoading]);
 
+  if (isLoading) {
+    return (
+      <div className={styles.postContainer}>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  if (allPosts.length === 0 && !isLoading) {
+    return (
+      <div className={styles.postContainer}>
+        <p>No posts found</p>
+      </div>
+    );
+  }
+
   return (
-    <>
+    <div className={styles.postContainer}>
+      <input
+        type='text'
+        className={styles.inputField}
+        placeholder='Search by user name...'
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
       {allPosts.map((post) => (
-        <div key={post.id} className={styles.postContainer}>
-          <PostItem post={post} />
-        </div>
+        <PostItem key={post.id} post={post} />
       ))}
-      {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-    </>
+    </div>
   );
 }
 
