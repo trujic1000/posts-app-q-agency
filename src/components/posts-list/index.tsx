@@ -35,34 +35,24 @@ function PostsList() {
     }
   }, [data, isLoading]);
 
-  if (isLoading) {
-    return (
-      <div className={styles.postContainer}>
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  if (allPosts.length === 0 && !isLoading) {
-    return (
-      <div className={styles.postContainer}>
-        <p>No posts found</p>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.postContainer}>
-      <input
-        type='text'
-        className={styles.inputField}
-        placeholder='Search by user name...'
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      {allPosts.map((post) => (
-        <PostItem key={post.id} post={post} />
-      ))}
+      {isLoading && <p>Loading...</p>}
+      {allPosts.length === 0 && !isLoading && <p>No posts found</p>}
+      {allPosts.length > 0 && (
+        <>
+          <input
+            type='text'
+            className={styles.inputField}
+            placeholder='Search by user name...'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {allPosts.map((post) => (
+            <PostItem key={post.id} post={post} />
+          ))}
+        </>
+      )}
       {error && <p>Error: {error.message}</p>}
     </div>
   );
