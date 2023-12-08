@@ -1,0 +1,11 @@
+.commentsSection {
+  margin-top: 1.25rem;
+}
+
+.commentsWrapper > :not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.commentsTitle {
+  font-weight: var(--fw-bold);
+}

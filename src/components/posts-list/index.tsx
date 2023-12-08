@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { logMessage } from '@components/logMessage';
+import { PostItem } from '@components/post-item';
 import { useApi, useInfiniteScroll } from 'hooks';
 import { Post } from 'types';
-import styles from './posts-list.module.css';
+import styles from './style.module.css';
 
 function PostsList() {
   const [page, setPage] = React.useState(1);
@@ -24,26 +25,11 @@ function PostsList() {
     }
   }, [data, isLoading]);
 
-  console.log('data', data);
-  console.log('isLoading', isLoading);
-  console.log('error', error);
   return (
     <>
       {allPosts.map((post) => (
         <div key={post.id} className={styles.postContainer}>
-          <div className={styles.postAuthor}>{post.user.name}</div>
-          <div className={styles.postTitle}>{post.title}</div>
-          <div className={styles.postBody}>{post.body}</div>
-          <div className={styles.commentsSection}>
-            <h3 className={styles.commentsTitle}>Comments</h3>
-            <div className={styles.commentsWrapper}>
-              {post.comments.map((comment) => (
-                <div key={`${post.id}_${comment.id}`} className={styles.comment}>
-                  <div className={styles.commentBody}>{comment.body}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <PostItem post={post} />
         </div>
       ))}
       {isLoading && <p>Loading...</p>}

@@ -1,0 +1,8 @@
+.comment {
+  padding: 0.6rem 0;
+  font-size: var(--fs-300);
+}
+
+.commentBody {
+  color: #555;
+}

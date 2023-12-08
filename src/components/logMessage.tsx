@@ -2,6 +2,7 @@ import React from 'react';
 
 interface LogMessageProps {
   message?: string;
+  [key: string]: any;
 }
 
 export const logMessage = <P extends LogMessageProps>(
@@ -25,6 +26,5 @@ export const logMessage = <P extends LogMessageProps>(
 };
 
 const getDisplayName = (WrappedComponent: React.ComponentType<any>): string => {
-  console.log('WrappedComponent.displayName', WrappedComponent.displayName);
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 };
