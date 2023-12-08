@@ -2,7 +2,10 @@ import React from 'react';
 
 export const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-async function request<TResponse extends object>(url: string, config: RequestInit = {}): Promise<TResponse> {
+async function request<TResponse extends object>(
+  url: string,
+  config: RequestInit = {}
+): Promise<TResponse> {
   const response = await fetch(url, config);
   return await response.json();
 }
@@ -28,7 +31,7 @@ export const useApi = <T extends object>(url: string, config: RequestInit = {}) 
 
   React.useEffect(() => {
     fetchData();
-  }, []);
+  }, [url]);
 
   return { data, isLoading, error };
 };

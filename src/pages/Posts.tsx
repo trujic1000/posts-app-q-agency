@@ -1,5 +1,9 @@
-import React from 'react';
+import { PostsList } from '@components/posts-list';
 
 export const Posts = () => {
-  return <div>Posts</div>;
+  return (
+    <>
+      <PostsList />
+    </>
+  );
 };
