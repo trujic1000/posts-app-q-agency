@@ -14,7 +14,7 @@ function PostItem({ post }: Props) {
   return (
     <div className={styles.post}>
       <div className={styles.postAuthor}>{post.user.name}</div>
-      <Link to={`/posts/${post.id}`} className={styles.postTitle}>
+      <Link to={`/post/${post.id}`} className={styles.postTitle}>
         {post.title}
       </Link>
       <div className={styles.postBody}>{post.body}</div>
